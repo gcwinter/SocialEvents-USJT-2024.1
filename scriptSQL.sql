@@ -13,10 +13,8 @@ CREATE TABLE social_events(
 
 drop table social_events;
 
-
 SELECT * FROM social_events;
-
-
+/*cadastrar um usuário*/
 INSERT INTO social_events
 (login, password) VALUES
 ('TEST', 'TEST');
