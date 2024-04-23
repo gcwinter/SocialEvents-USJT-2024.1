@@ -1,7 +1,7 @@
-use defaultdb ;
+use social_events ;
 
-CREATE TABLE social_events(
-  cod_usuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT ,
+CREATE TABLE User(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT ,
   login VARCHAR(200) NOT NULL,
   password VARCHAR(200)NOT NULL,
   name VARCHAR(200) ,
@@ -11,23 +11,24 @@ CREATE TABLE social_events(
   age INT 
 );
 
-drop table social_events;
 
-SELECT * FROM social_events;
-/*cadastrar um usuário*/
-INSERT INTO social_events
+SELECT * FROM User;
+/*new User*/
+INSERT INTO User
 (login, password) VALUES
 ('TEST', 'TEST');
 
 SELECT  *
-FROM social_events;
+FROM User;
 
-UPDATE social_events SET
+/*update user info*/
+UPDATE User SET
 login='admin',password='admin'
-WHERE cod_usuario = 1;
+WHERE id = 1;
 
-DELETE FROM social_events
-WHERE cod_usuario = 2;
+/*delete user by cod_user*/
+DELETE FROM User
+WHERE id = 2;
 
-UPDATE social_events SET
-password='' WHERE cod_usuario = 1;
+UPDATE User SET
+password='' WHERE id = 1;
