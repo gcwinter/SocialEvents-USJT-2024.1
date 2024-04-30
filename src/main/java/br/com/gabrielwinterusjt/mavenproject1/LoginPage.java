@@ -4,6 +4,8 @@
  */
 package br.com.gabrielwinterusjt.mavenproject1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Winter
@@ -31,7 +33,7 @@ public class LoginPage extends javax.swing.JFrame {
         imgLogo = new javax.swing.JLabel();
         loginTxt = new javax.swing.JLabel();
         passTxt = new javax.swing.JLabel();
-        acessBtn = new javax.swing.JButton();
+        loginBtn = new javax.swing.JButton();
         newAccountBtn = new javax.swing.JButton();
         passForm = new javax.swing.JPasswordField();
 
@@ -65,15 +67,15 @@ public class LoginPage extends javax.swing.JFrame {
         passTxt.setForeground(new java.awt.Color(255, 255, 128));
         passTxt.setText("Password");
 
-        acessBtn.setBackground(new java.awt.Color(255, 255, 128));
-        acessBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        acessBtn.setForeground(new java.awt.Color(253, 166, 27));
-        acessBtn.setText("Login");
-        acessBtn.setBorder(null);
-        acessBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        acessBtn.addActionListener(new java.awt.event.ActionListener() {
+        loginBtn.setBackground(new java.awt.Color(255, 255, 128));
+        loginBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        loginBtn.setForeground(new java.awt.Color(253, 166, 27));
+        loginBtn.setText("Login");
+        loginBtn.setBorder(null);
+        loginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acessBtnActionPerformed(evt);
+                loginBtnActionPerformed(evt);
             }
         });
 
@@ -106,7 +108,7 @@ public class LoginPage extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(acessBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newAccountBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(115, 115, 115))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -137,7 +139,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addComponent(acessBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(newAccountBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -168,16 +170,34 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_passFormActionPerformed
 
     private void newAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAccountBtnActionPerformed
-
+  new NewAccountPage().setVisible(true);
+  
     }//GEN-LAST:event_newAccountBtnActionPerformed
 
     private void loginFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginFormActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginFormActionPerformed
 
-    private void acessBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_acessBtnActionPerformed
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+    
+        User user = new User();
+        user.setPassword(new String(this.passForm.getPassword()));
+        user.setLogin(this.loginForm.getText());
+        UserDAO userDAO = new UserDAO();
+        
+        try{if(userDAO.find(user)){
+        new EventsPage().setVisible(true);
+        this.setVisible(false);
+        }else{
+        JOptionPane.showMessageDialog(null,"usuario ou senha inválida");
+        }
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null,"error");
+           
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,9 +235,9 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton acessBtn;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton loginBtn;
     private javax.swing.JTextField loginForm;
     private javax.swing.JLabel loginTxt;
     private javax.swing.JButton newAccountBtn;

@@ -1,7 +1,7 @@
 use social_events ;
 
 CREATE TABLE User(
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT ,
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL  ,
   login VARCHAR(200) NOT NULL,
   password VARCHAR(200)NOT NULL,
   name VARCHAR(200) ,
@@ -12,9 +12,9 @@ CREATE TABLE User(
 );
 
 
-SELECT * FROM User;
+SELECT * FROM UUserser;
 /*new User*/
-INSERT INTO User
+INSERT INTO User	 
 (login, password) VALUES
 ('TEST', 'TEST');
 
