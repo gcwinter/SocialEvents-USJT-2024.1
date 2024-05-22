@@ -4,6 +4,8 @@
  */
 package br.com.gabrielwinterusjt.mavenproject1;
 
+import br.com.gabrielwinterusjt.mavenproject1.model.User;
+
 /**
  *
  * @author Winter
@@ -31,26 +33,61 @@ public class UserDAO {
         connection.close();
     }
 
-    public Boolean find(User user) throws Exception {
+    public User find(User user) throws Exception {
 
         var connection = new ConnectionFactory().conect();
         var sql = "SELECT * FROM User WHERE login = ? AND password = ?";
 
-        var prepareStatement = connection.prepareStatement(sql);
-        prepareStatement.setString(1, user.getLogin());
-        prepareStatement.setString(2, user.getPassword());
+        var ps = connection.prepareStatement(sql);
+        ps.setString(1, user.getLogin());
+        ps.setString(2, user.getPassword());
 
-        var resultStatement = prepareStatement.executeQuery();
-        var existUser = resultStatement.next();
+        var rs = ps.executeQuery();
         
-        resultStatement.close();
-        prepareStatement.close();
+        var existUser = rs.next();
+        
+
+        User userDB = new User();
+        userDB.setAdm(rs.getBoolean("adm"));
+        userDB.setLogin(user.getLogin());
+        userDB.setPassword(user.getPassword());
+        userDB.setName(rs.getString("name"));
+        userDB.setAge(rs.getInt("age"));
+        userDB.setGender(rs.getString("gender"));
+        userDB.setEmail(rs.getString("email"));
+        userDB.setCpf(rs.getString("cpf"));
+        
+        System.out.println(userDB);
+        
+        rs.close();
+        ps.close();
         connection.close();
         
-        System.out.println(existUser);
+    
 
+        return userDB;
+
+    }
+    public Boolean exist(User user) throws Exception{
+        
+        var connection = new ConnectionFactory().conect();
+        var sql = "SELECT * FROM User WHERE login = ? AND password = ?";
+
+        var ps = connection.prepareStatement(sql);
+        ps.setString(1, user.getLogin());
+        ps.setString(2, user.getPassword());
+
+        var rs = ps.executeQuery();
+        var existUser = rs.next();
+        
+      
+        
+        rs.close();
+        ps.close();
+        connection.close();
+        
+      
         return existUser;
-
     }
 
 }

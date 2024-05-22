@@ -4,6 +4,9 @@
  */
 package br.com.gabrielwinterusjt.mavenproject1;
 
+import br.com.gabrielwinterusjt.mavenproject1.model.User;
+import br.com.gabrielwinterusjt.mavenproject1.pages.LoginPage;
+
 /**
  *
  * @author Winter
@@ -11,17 +14,12 @@ package br.com.gabrielwinterusjt.mavenproject1;
 public class SocialEvents {
 
     public static void main(String[] args) {
-        var user = new User(false,"joao", "admin", "pedro souza",27,"male", "pedrosouza@gemail.com", "44444444444");
-        
- 
-        
-        UserDAO userDAO = new UserDAO();
-        
-               
+                       
 
         try {
            
-            userDAO.create(user);
+            LoginPage loginPage = new LoginPage();
+            loginPage.setVisible(true);
         } catch (Exception e) {
             System.out.println(e);
         }
