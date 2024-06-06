@@ -11,24 +11,26 @@ CREATE TABLE User(
   age INT 
 );
 
+SELECT * FROM User;
 
-SELECT * FROM UUserser;
-/*new User*/
 INSERT INTO User	 
 (login, password) VALUES
-('TEST', 'TEST');
+('admin', 'admin');
 
-SELECT  *
-FROM User;
 
-/*update user info*/
-UPDATE User SET
-login='admin',password='admin'
-WHERE id = 1;
-
-/*delete user by cod_user*/
-DELETE FROM User
-WHERE id = 2;
-
-UPDATE User SET
-password='' WHERE id = 1;
+ create table Events(
+ id INT AUTO_INCREMENT PRIMARY KEY NOT NULL  ,
+ Name varchar(255),
+ Description varchar(255),
+ DateTimeStart date,
+ DateTimeFinish date
+  );
+  
+   insert into Events (Name, Description, DateTimeStart,DateTimeFinish)
+  values ('python','curso de python basico','2024/06/12','2024/09/24');
+  
+   insert into Events (Name, Description, DateTimeStart,DateTimeFinish)
+  values ('Java','curso de Java basico','2024/08/12','2024/09/24');
+  
+   insert into Events (Name, Description, DateTimeStart,DateTimeFinish)
+  values ('c#','curso de C# basico','2024/01/12','2024/07/22');
